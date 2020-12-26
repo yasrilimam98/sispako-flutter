@@ -66,6 +66,17 @@ class HomePage extends StatelessWidget {
               ),
               child: Container(
                 color: Colors.white,
+                padding: const EdgeInsets.only(
+                    top: 50, left: 32, right: 16, bottom: 10),
+                child: Column(
+                  children: <Widget>[
+                    ListTile(
+                      title: Text(""),
+                      subtitle: Text("SISPAKO"),
+                      trailing: Image.asset(name),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
