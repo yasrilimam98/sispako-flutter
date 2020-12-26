@@ -67,13 +67,26 @@ class HomePage extends StatelessWidget {
               child: Container(
                 color: Colors.white,
                 padding: const EdgeInsets.only(
-                    top: 50, left: 32, right: 16, bottom: 10),
+                    top: 40, left: 32, right: 16, bottom: 10),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     ListTile(
                       title: Text(""),
-                      subtitle: Text("SISPAKO"),
-                      trailing: Image.asset(name),
+                      subtitle: Text(
+                        "SISPAKO",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 30,
+                          color: Colors.black,
+                        ),
+                      ),
+                      trailing: ClipOval(
+                          child: Image.asset("assets/images/indonesia.png")),
+                    ),
+                    _RadialProgress(
+                      width: height * 0.2,
+                      height: height * 0.2,
                     ),
                   ],
                 ),
@@ -197,6 +210,22 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+// Membuat jumlah hasil pengguna KB Indonesia
+class _RadialProgress extends StatelessWidget {
+  final double height, width;
+
+  const _RadialProgress({Key key, this.height, this.width}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      color: Colors.grey,
     );
   }
 }
