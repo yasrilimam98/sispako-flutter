@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sispako/model/data.dart';
+import 'package:sispako/screens/homes/robo.dart';
+import 'package:vector_math/vector_math_64.dart' as math;
 
 class HomePage extends StatelessWidget {
   static String routeName = "/homepage";
@@ -7,6 +9,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // Membuat ukuran tinggi
     final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color(0xFFE9E9E9),
       bottomNavigationBar: ClipRRect(
@@ -25,6 +28,7 @@ class HomePage extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Icon(Icons.home),
               ),
+              // ignore: deprecated_member_use
               title: Text(
                 "Home",
                 style: const TextStyle(color: Colors.white),
@@ -35,6 +39,7 @@ class HomePage extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Icon(Icons.home),
               ),
+              // ignore: deprecated_member_use
               title: Text(
                 "Search",
                 style: const TextStyle(color: Colors.white),
@@ -45,6 +50,7 @@ class HomePage extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Icon(Icons.home),
               ),
+              // ignore: deprecated_member_use
               title: Text(
                 "Profile",
                 style: const TextStyle(color: Colors.white),
@@ -84,9 +90,55 @@ class HomePage extends StatelessWidget {
                       trailing: ClipOval(
                           child: Image.asset("assets/images/indonesia.png")),
                     ),
-                    _RadialProgress(
-                      width: height * 0.2,
-                      height: height * 0.2,
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        _RadialProgress(
+                          width: width * 0.4,
+                          height: width * 0.4,
+                          progress: 0.7,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        // Deklarasikan jumlah kb
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            _IngredientProgress(
+                              ingredient: "Jumlah KB Aktif",
+                              progress: 0.3,
+                              progressColor: Colors.blue,
+                              leftAmount: 72,
+                              width: width * 0.28,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            _IngredientProgress(
+                              ingredient: "Pasangan Subur",
+                              progress: 0.2,
+                              progressColor: Colors.yellow,
+                              leftAmount: 252,
+                              width: width * 0.28,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            _IngredientProgress(
+                              ingredient: "Pasangan Tidak Subur",
+                              progress: 0.1,
+                              progressColor: Colors.redAccent,
+                              leftAmount: 61,
+                              width: width * 0.28,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -136,71 +188,83 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
+                  // Pindah Halaman ke robo
                   Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.only(
-                          bottom: 10, left: 32, right: 32),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            const Color(0xFF20008B),
-                            const Color(0xFF200087),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => RoboScreen(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(
+                            bottom: 10, left: 32, right: 32),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              const Color(0xFF20008B),
+                              const Color(0xFF200087),
+                            ],
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 16.0, left: 16),
+                              child: Text(
+                                "SUPPORT",
+                                style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 4.0, left: 16),
+                              child: Text(
+                                "ROBO KONTRASEPSI",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w800),
+                              ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: 113,
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(25)),
+                                      color: const Color(0xFF5B4D9D),
+                                    ),
+                                    padding: const EdgeInsets.all(10),
+                                    child: Image.asset(
+                                      "assets/images/bot.png",
+                                      width: 100,
+                                      height: 60,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16.0, left: 16),
-                            child: Text(
-                              "SUPPORT",
-                              style: TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4.0, left: 16),
-                            child: Text(
-                              "ROBO KONTRASEPSI",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w800),
-                            ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              children: <Widget>[
-                                SizedBox(
-                                  width: 113,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(25)),
-                                    color: const Color(0xFF5B4D9D),
-                                  ),
-                                  padding: const EdgeInsets.all(10),
-                                  child: Image.asset(
-                                    "assets/images/bot.png",
-                                    width: 100,
-                                    height: 60,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
                       ),
                     ),
                   ),
@@ -214,19 +278,138 @@ class HomePage extends StatelessWidget {
   }
 }
 
-// Membuat jumlah hasil pengguna KB Indonesia
-class _RadialProgress extends StatelessWidget {
-  final double height, width;
+class _IngredientProgress extends StatelessWidget {
+  final String ingredient;
+  final int leftAmount;
+  final double progress, width;
+  final Color progressColor;
 
-  const _RadialProgress({Key key, this.height, this.width}) : super(key: key);
+  const _IngredientProgress(
+      {Key key,
+      this.ingredient,
+      this.leftAmount,
+      this.progress,
+      this.progressColor,
+      this.width})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      color: Colors.grey,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          ingredient.toUpperCase(),
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Container(
+                  height: 10,
+                  width: width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    color: Colors.black12,
+                  ),
+                ),
+                Container(
+                  height: 10,
+                  width: width * progress,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    color: progressColor,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text("${leftAmount} %"),
+          ],
+        ),
+      ],
     );
+  }
+}
+
+// Membuat jumlah hasil pengguna KB Indonesia
+class _RadialProgress extends StatelessWidget {
+  final double height, width, progress;
+
+  const _RadialProgress({Key key, this.height, this.width, this.progress})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      // Mengatur jumlah grafik
+      painter: _RadialPainter(progress: 0.7),
+      child: Container(
+        height: height,
+        width: width,
+        child: Center(
+          child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: "70 %",
+                  style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFF200087)),
+                ),
+                TextSpan(text: "\n"),
+                TextSpan(
+                  text: "Jumlah KB Aktif",
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xFF200087)),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Membuat radius jumlah keseluruhan KB
+class _RadialPainter extends CustomPainter {
+  final double progress;
+
+  _RadialPainter({this.progress});
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint()
+      ..strokeWidth = 10
+      ..color = Color(0xFF200087)
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+    Offset center = Offset(size.width / 2, size.height / 2);
+    double relativeProgress = 360 * progress;
+    canvas.drawArc(
+      Rect.fromCircle(center: center, radius: size.width / 2),
+      math.radians(-90),
+      math.radians(-relativeProgress),
+      false,
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }
 
