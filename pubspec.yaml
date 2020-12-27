@@ -29,7 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
   flutter_spinkit: "^4.1.2"
-  intl: ^0.16.1
+  animations: ^1.0.0+5
   simple_animations: ^1.1.3
   page_transition: ^1.1.4
   flutter_svg: ^0.17.4 #untuk memasukan file svg

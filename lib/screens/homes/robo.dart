@@ -31,7 +31,7 @@ class RoboScreen extends StatelessWidget {
               ),
               ListTile(
                 title: Text(
-                  "ROBO SUPPORT",
+                  "ROBO CHAT",
                   style: TextStyle(
                     fontWeight: FontWeight.w800,
                     fontSize: 24,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sispako/model/data.dart';
+import 'package:sispako/screens/homes/artikeldetail.dart';
 import 'package:sispako/screens/homes/robo.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
 
@@ -425,73 +426,84 @@ class _DataCard extends StatelessWidget {
         right: 20,
         bottom: 10,
       ),
-      child: Material(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        elevation: 4,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Flexible(
-              fit: FlexFit.tight,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                child: Image.asset(
-                  data.imagePath,
-                  width: 150,
-                  fit: BoxFit.fill,
-                ),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ArtikelDetail(
+                data: data,
               ),
             ),
-            Flexible(
-              fit: FlexFit.tight,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Text(
-                      data.jenis,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color: Colors.blueGrey),
-                    ),
-                    Text(
-                      data.name,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18,
-                          color: Colors.black),
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.access_time,
-                          color: Colors.black12,
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          data.keterangan,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Colors.blueGrey),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 16),
-                  ],
+          );
+        },
+        child: Material(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          elevation: 4,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Flexible(
+                fit: FlexFit.tight,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  child: Image.asset(
+                    data.imagePath,
+                    width: 150,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
-            )
-          ],
+              Flexible(
+                fit: FlexFit.tight,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Text(
+                        data.jenis,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            color: Colors.blueGrey),
+                      ),
+                      Text(
+                        data.name,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            color: Colors.black),
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.access_time,
+                            color: Colors.black12,
+                          ),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            data.keterangan,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                                color: Colors.blueGrey),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 16),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
