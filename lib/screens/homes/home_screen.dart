@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sispako/model/data.dart';
 import 'package:sispako/screens/homes/artikeldetail.dart';
 import 'package:sispako/screens/homes/robo.dart';
+import 'package:sispako/screens/homes/spk.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
+
+import '../../main.dart';
 
 class HomePage extends StatelessWidget {
   static String routeName = "/homepage";
@@ -12,54 +15,54 @@ class HomePage extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: const Color(0xFFE9E9E9),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
-        child: BottomNavigationBar(
-          iconSize: 40,
-          selectedIconTheme: IconThemeData(
-            color: const Color(0xFF200087),
-          ),
-          unselectedIconTheme: IconThemeData(
-            color: Colors.black12,
-          ),
-          items: [
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Icon(Icons.home),
-              ),
-              // ignore: deprecated_member_use
-              title: Text(
-                "Home",
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Icon(Icons.home),
-              ),
-              // ignore: deprecated_member_use
-              title: Text(
-                "Search",
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Icon(Icons.home),
-              ),
-              // ignore: deprecated_member_use
-              title: Text(
-                "Profile",
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
-        ),
-      ),
+      // backgroundColor: const Color(0xFFE9E9E9),
+      // bottomNavigationBar: ClipRRect(
+      //   borderRadius: BorderRadius.vertical(top: Radius.circular(40)),
+      //   child: BottomNavigationBar(
+      //     iconSize: 40,
+      //     selectedIconTheme: IconThemeData(
+      //       color: const Color(0xFF200087),
+      //     ),
+      //     unselectedIconTheme: IconThemeData(
+      //       color: Colors.black12,
+      //     ),
+      //     items: [
+      //       BottomNavigationBarItem(
+      //         icon: Padding(
+      //           padding: const EdgeInsets.only(top: 8.0),
+      //           child: Icon(Icons.home),
+      //         ),
+      //         // ignore: deprecated_member_use
+      //         title: Text(
+      //           "Home",
+      //           style: const TextStyle(color: Colors.white),
+      //         ),
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Padding(
+      //           padding: const EdgeInsets.only(top: 8.0),
+      //           child: Icon(Icons.home),
+      //         ),
+      //         // ignore: deprecated_member_use
+      //         title: Text(
+      //           "Search",
+      //           style: const TextStyle(color: Colors.white),
+      //         ),
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Padding(
+      //           padding: const EdgeInsets.only(top: 8.0),
+      //           child: Icon(Icons.home),
+      //         ),
+      //         // ignore: deprecated_member_use
+      //         title: Text(
+      //           "Profile",
+      //           style: const TextStyle(color: Colors.white),
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
       body: Stack(
         children: <Widget>[
           Positioned(
@@ -112,9 +115,9 @@ class HomePage extends StatelessWidget {
                           children: <Widget>[
                             _IngredientProgress(
                               ingredient: "Jumlah KB Aktif",
-                              progress: 0.3,
-                              progressColor: Colors.blue,
-                              leftAmount: 72,
+                              progress: 0.63,
+                              progressColor: Colors.green,
+                              leftAmount: 63,
                               width: width * 0.28,
                             ),
                             SizedBox(
@@ -122,9 +125,9 @@ class HomePage extends StatelessWidget {
                             ),
                             _IngredientProgress(
                               ingredient: "Pasangan Subur",
-                              progress: 0.2,
+                              progress: 0.18,
                               progressColor: Colors.yellow,
-                              leftAmount: 252,
+                              leftAmount: 18,
                               width: width * 0.28,
                             ),
                             SizedBox(
@@ -132,9 +135,9 @@ class HomePage extends StatelessWidget {
                             ),
                             _IngredientProgress(
                               ingredient: "Pasangan Tidak Subur",
-                              progress: 0.1,
+                              progress: 0.2,
                               progressColor: Colors.redAccent,
-                              leftAmount: 61,
+                              leftAmount: 19,
                               width: width * 0.28,
                             ),
                           ],
@@ -208,8 +211,8 @@ class HomePage extends StatelessWidget {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              const Color(0xFF20008B),
-                              const Color(0xFF200087),
+                              const Color(0xFF2196F3),
+                              const Color(0xFF2196F3),
                             ],
                           ),
                         ),
@@ -223,7 +226,7 @@ class HomePage extends StatelessWidget {
                               padding:
                                   const EdgeInsets.only(top: 16.0, left: 16),
                               child: Text(
-                                "SUPPORT",
+                                "PEMILIHAN ALAT",
                                 style: TextStyle(
                                     color: Colors.white70,
                                     fontSize: 16,
@@ -234,7 +237,7 @@ class HomePage extends StatelessWidget {
                               padding:
                                   const EdgeInsets.only(top: 4.0, left: 16),
                               child: Text(
-                                "ROBO KONTRASEPSI",
+                                "BERDASARKAN PAKAR",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 24,
@@ -251,13 +254,13 @@ class HomePage extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(25)),
-                                      color: const Color(0xFF5B4D9D),
+                                      color: const Color(0xFF90CAF9),
                                     ),
                                     padding: const EdgeInsets.all(10),
                                     child: Image.asset(
-                                      "assets/images/bot.png",
+                                      "assets/images/lamp.png",
                                       width: 100,
-                                      height: 60,
+                                      height: 70,
                                       color: Colors.white,
                                     ),
                                   ),
@@ -362,11 +365,11 @@ class _RadialProgress extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "70 %",
+                  text: "63 %",
                   style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.w700,
-                      color: const Color(0xFF200087)),
+                      color: const Color(0xFF2196F3)),
                 ),
                 TextSpan(text: "\n"),
                 TextSpan(
@@ -374,7 +377,7 @@ class _RadialProgress extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
-                      color: const Color(0xFF200087)),
+                      color: const Color(0xFF2196F3)),
                 ),
               ],
             ),
@@ -394,7 +397,7 @@ class _RadialPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
       ..strokeWidth = 10
-      ..color = Color(0xFF200087)
+      ..color = Color(0xFF2196F3)
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
     Offset center = Offset(size.width / 2, size.height / 2);
@@ -481,10 +484,6 @@ class _DataCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(
-                            Icons.access_time,
-                            color: Colors.black12,
-                          ),
                           SizedBox(
                             width: 4,
                           ),
@@ -493,7 +492,7 @@ class _DataCard extends StatelessWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 14,
-                                color: Colors.blueGrey),
+                                color: Colors.white),
                           ),
                         ],
                       ),

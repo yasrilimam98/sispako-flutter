@@ -41,8 +41,8 @@ final data = [
       artikelkb:
           '''Implan adalah metode kontrasepsi hormonal yang efektif, tidak permanen dan dapat mencegah terjadinya kehamilan antara tiga hingga lima tahun. Implan memiliki 2 jenis, yaitu Non-Biodegradable Implan  dan Biodegradable Implan.'''),
   Data(
-      jenis: "Hormonal",
-      name: "AKDR",
+      jenis: "Non Hormonal",
+      name: "IUD",
       keterangan: "2 Tahun",
       imagePath: "assets/images/IUD.jpg",
       mekanisme: [
@@ -64,7 +64,7 @@ final data = [
       artikelkb:
           '''AKDR yang saat ini digunakan di Indonesia adalah CuT-380A. Penggunaan kontrasepsi ini sangat efektif, reversibel dan berjangka panjang akan tetapi perdarahan haid lebih banyak dari biasanya. Cara kerja dari AKDR ini dengan menghambat kemampuan sperma untuk masuk ke tuba fallopi, memengaruhi fertilisasi sebelum ovum mencapai kavum uteri, mencegah sperma dan ovum bertemu, memungkinkan pencegahan implantasi ovum dalam uterus serta mempertebal mukus serviks. AKDR sangat efektif digunakan dengan angka kegagalan 0,6 – 0,8 kehamilan per 100 perempuan dalam 1 tahun pertama. '''),
   Data(
-      jenis: "Hormonal",
+      jenis: "Non Hormonal",
       name: "Kondom",
       keterangan: "2 Tahun",
       imagePath: "assets/images/kondom.jpg",
@@ -133,7 +133,7 @@ final data = [
       artikelkb:
           '''AKDR yang saat ini digunakan di Indonesia adalah CuT-380A. Penggunaan kontrasepsi ini sangat efektif, reversibel dan berjangka panjang akan tetapi perdarahan haid lebih banyak dari biasanya. Cara kerja dari AKDR ini dengan menghambat kemampuan sperma untuk masuk ke tuba fallopi, memengaruhi fertilisasi sebelum ovum mencapai kavum uteri, mencegah sperma dan ovum bertemu, memungkinkan pencegahan implantasi ovum dalam uterus serta mempertebal mukus serviks. AKDR sangat efektif digunakan dengan angka kegagalan 0,6 – 0,8 kehamilan per 100 perempuan dalam 1 tahun pertama. '''),
   Data(
-      jenis: "Hormonal",
+      jenis: "Non Hormonal",
       name: "Kontap",
       keterangan: "2 Tahun",
       imagePath: "assets/images/kontap.jpg",

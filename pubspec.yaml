@@ -32,6 +32,7 @@ dependencies:
   animations: ^1.0.0+5
   simple_animations: ^1.1.3
   page_transition: ^1.1.4
+
   flutter_svg: ^0.17.4 #untuk memasukan file svg
   provider: ^4.3.1 #Untuk state management
 
