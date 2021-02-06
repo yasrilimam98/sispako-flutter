@@ -4,7 +4,7 @@ class RoboScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF200087),
+      backgroundColor: const Color(0xFF2196F3),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -31,7 +31,7 @@ class RoboScreen extends StatelessWidget {
               ),
               ListTile(
                 title: Text(
-                  "PENGAMBILAN KEPUTUSAN ALAT ",
+                  "PEMILIHAN ALAT",
                   style: TextStyle(
                     fontWeight: FontWeight.w800,
                     fontSize: 24,

@@ -11,6 +11,35 @@ class MyApp1 extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp1> {
+  String valueChoose;
+  List listUmur = [
+    "22 - 27 Tahun",
+    "28 - 33 Tahun",
+    "34 - 39 Tahun",
+    "40 - 45 Tahun",
+    "46 - 50 Tahun"
+  ];
+
+  String valueChoose1;
+  List listBeratbadan = ["30 sd 60 Kg", "70 Kg"];
+
+  String valueChoose2;
+  List listPenyakit = [
+    "Darah Tinggi",
+    "Stroke",
+    "Pusing",
+    "Migran",
+    "Lever",
+    "Jantung",
+    "Tumor",
+    "Paru-paru",
+    "Diabetes",
+    "Tidak ada penyakit"
+  ];
+
+  String valueChoose3;
+  List listAnak = ["Anak satu", "Anak dua", "Anak tiga", "Anak empat"];
+
   int number = 0;
   double iud = 0.0;
   double kontap = 0.0;
@@ -24,30 +53,186 @@ class _MyAppState extends State<MyApp1> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Perhitungan TOPSIS"),
+          title: Text("PEMILIHAN ALAT"),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                alatTertinggi,
-                style: TextStyle(fontSize: 40),
-              ),
-              Text(
-                nilaiTertinggi.toString(),
-                style: TextStyle(fontSize: 40),
-              ),
-              RaisedButton(
-                child: Text("Hitung SPK"),
-                //Isi dengan inputan atau value dari dropdown
-                onPressed: () => hitungTopsis(1, 4, 2, 1),
-              )
-            ],
+        body: new ListView(children: <Widget>[
+          new Container(
+            padding: new EdgeInsets.all(20.0),
+            child: new Column(
+              children: <Widget>[
+                new TextField(
+                  decoration: new InputDecoration(
+                      hintText: "Nama Lengkap",
+                      labelText: "Nama Lengkap",
+                      border: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(20.0))),
+                ),
+                new Padding(
+                  padding: new EdgeInsets.only(top: 20.0),
+                ),
+                new TextField(
+                  maxLines: 3,
+                  decoration: new InputDecoration(
+                      hintText: "Keluhan",
+                      labelText: "Keluhan",
+                      border: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(20.0))),
+                ),
+                new Padding(
+                  padding: new EdgeInsets.only(top: 10.0),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(9.0),
+                  child: Container(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blue, width: 1),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: new DropdownButton(
+                      hint: Text("Pilih Usia"),
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 36,
+                      isExpanded: true,
+                      underline: SizedBox(),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      value: valueChoose,
+                      onChanged: (newValue) {
+                        setState(() {
+                          valueChoose = newValue;
+                        });
+                      },
+                      items: listUmur.map((valueUmur) {
+                        return DropdownMenuItem(
+                          value: valueUmur,
+                          child: Text(valueUmur),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+                new Padding(
+                  padding: new EdgeInsets.only(top: 10.0),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(9.0),
+                  child: Container(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blue, width: 1),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: new DropdownButton(
+                      hint: Text("Pilih Berat Badan"),
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 36,
+                      isExpanded: true,
+                      underline: SizedBox(),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      value: valueChoose1,
+                      onChanged: (newValue1) {
+                        setState(() {
+                          valueChoose1 = newValue1;
+                        });
+                      },
+                      items: listBeratbadan.map((valueBB) {
+                        return DropdownMenuItem(
+                          value: valueBB,
+                          child: Text(valueBB),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+                new Padding(
+                  padding: new EdgeInsets.only(top: 10.0),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(9.0),
+                  child: Container(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blue, width: 1),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: new DropdownButton(
+                      hint: Text("Pilih Gangguan Kesehatan"),
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 36,
+                      isExpanded: true,
+                      underline: SizedBox(),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      value: valueChoose2,
+                      onChanged: (newValue2) {
+                        setState(() {
+                          valueChoose2 = newValue2;
+                        });
+                      },
+                      items: listPenyakit.map((valuegk) {
+                        return DropdownMenuItem(
+                          value: valuegk,
+                          child: Text(valuegk),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+                new Padding(
+                  padding: new EdgeInsets.only(top: 10.0),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(9.0),
+                  child: Container(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blue, width: 1),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: new DropdownButton(
+                      hint: Text("Pilih Jumlah Anak"),
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 36,
+                      isExpanded: true,
+                      underline: SizedBox(),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      value: valueChoose3,
+                      onChanged: (newValue3) {
+                        setState(() {
+                          valueChoose3 = newValue3;
+                        });
+                      },
+                      items: listAnak.map((valueanak) {
+                        return DropdownMenuItem(
+                          value: valueanak,
+                          child: Text(valueanak),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+                new Padding(
+                  padding: new EdgeInsets.only(top: 0.0),
+                ),
+                Text(
+                  alatTertinggi,
+                  style: TextStyle(fontSize: 40),
+                ),
+                Text(
+                  nilaiTertinggi.toString(),
+                  style: TextStyle(fontSize: 40),
+                ),
+                RaisedButton(
+                  child: Text("Hitung SPK"),
+                  //Isi dengan inputan atau value dari dropdown
+                  onPressed: () => hitungTopsis(1, 4, 2, 1),
+                )
+              ],
+            ),
           ),
-        ),
+        ]),
       ),
     );
   }
