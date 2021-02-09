@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sispako/model/data.dart';
 import 'package:sispako/screens/homes/artikeldetail.dart';
-import 'package:sispako/screens/homes/robo.dart';
-import 'package:sispako/screens/homes/spk.dart';
+import 'package:sispako/screens/homes/topsis.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
 
 import '../../main.dart';
