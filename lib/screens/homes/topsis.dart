@@ -1,7 +1,10 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:sispako/Style/constant.dart';
 import 'dart:math';
+
+import 'package:sispako/screens/homes/home_screen.dart';
 
 void main() {
   runApp(MyApp1());
@@ -32,6 +35,10 @@ class _MyAppState extends State<MyApp1> {
   String detailRangking = "";
   List<Rangking> listRangking = [];
   List namaAlat = ["IUD", "Kontap", "Implant", "Suntik", "Pil", "Kondom"];
+
+  // Alert Dialog
+  TextEditingController controllerNama = new TextEditingController();
+  TextEditingController controllerKeluhan = new TextEditingController();
 
   //Usia
   List<String> _listUsia = [
@@ -106,6 +113,7 @@ class _MyAppState extends State<MyApp1> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     new TextField(
+                        controller: controllerNama,
                         decoration: new InputDecoration(
                             hintText: "Nama Lengkap",
                             labelText: "Nama Lengkap",
@@ -120,6 +128,7 @@ class _MyAppState extends State<MyApp1> {
                       padding: new EdgeInsets.only(top: 20.0),
                     ),
                     new TextField(
+                        controller: controllerKeluhan,
                         maxLines: 3,
                         decoration: new InputDecoration(
                             hintText: "Keluhan",
@@ -264,7 +273,21 @@ class _MyAppState extends State<MyApp1> {
                       padding: new EdgeInsets.only(top: 10.0),
                     ),
                     RaisedButton(
-                      child: Text("Hitung SPK"),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15.0, bottom: 15.0, left: 30.0, right: 30.0),
+                        child: Text(
+                          "Hitung SPK",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      color: const Color(0xFF2196F3),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                      elevation: 3,
                       // child: Text("Hitung SPK" +
                       //     valueUsia.toString() +
                       //     valueBeratBadan.toString() +
@@ -276,13 +299,43 @@ class _MyAppState extends State<MyApp1> {
                           valueGangguanKesehatan, valueJumlahAnak),
                     ),
                     new Padding(
-                      padding: new EdgeInsets.only(top: 10.0),
+                      padding: new EdgeInsets.only(top: 15.0),
                     ),
-                    Text(
-                      'Info Detail Hasil Perhitungan\n' + detailRangking,
-                      // alatTertinggi,
-                      style: TextStyle(fontSize: 20),
+                    RaisedButton(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15.0, bottom: 15.0, left: 30.0, right: 30.0),
+                        child: Text(
+                          "Dashboard",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      color: const Color(0xFF2196F3),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                      elevation: 3,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return HomePage();
+                            },
+                          ),
+                        );
+                      },
                     ),
+                    // new Padding(
+                    //   padding: new EdgeInsets.only(top: 10.0),
+                    // ),
+                    // Text(
+                    //   'Info Detail Hasil Perhitungan\n' + detailRangking,
+                    //   // alatTertinggi,
+                    //   style: TextStyle(fontSize: 20),
+                    // ),
                     // Text(
                     //   nilaiTertinggi.toString(),
                     //   style: TextStyle(fontSize: 28),
@@ -299,6 +352,44 @@ class _MyAppState extends State<MyApp1> {
 
   void hitungTopsis(
       num usia, num beratBadan, num gangguanKesehatan, num jumlahAnak) {
+    AlertDialog alertDialog = new AlertDialog(
+      content: new Container(
+          height: 600.0,
+          width: 400.0,
+          // decoration: BoxDecoration(
+          //   border: Border.all(color: Colors.blue, width: 1),
+          //   borderRadius: BorderRadius.circular(20),
+          // ),
+          child: new Column(
+            children: <Widget>[
+              new Text("Nama Lengkap : \n${controllerNama.text}"),
+              new Text("Keluhan : \n${controllerKeluhan.text}"),
+              new Text("Usia : \n$_selectedUsia"),
+              new Text("Berat Badan : \n$_selectedBeratBadan"),
+              new Text("Gangguan Kesehatan : \n$_selectedGangguanKesehatan"),
+              new Text("Jumlah Anak : \n$_selectedJumlahAnak"),
+              new Text("Info Detail : \n$detailRangking"),
+              new Padding(
+                padding: new EdgeInsets.all(10.0),
+              ),
+              new RaisedButton(
+                child: new Text(
+                  "OK",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+                color: const Color(0xFF2196F3),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                elevation: 3,
+                onPressed: () => Navigator.pop(context),
+              )
+            ],
+          )),
+    );
+    showDialog(context: context, child: alertDialog);
     setState(() {
       List inputan = [usia, beratBadan, gangguanKesehatan, jumlahAnak];
       //Tabel Ektraksi Kriteria dan Alternatif
