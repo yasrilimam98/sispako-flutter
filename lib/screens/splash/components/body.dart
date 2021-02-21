@@ -20,10 +20,13 @@ class _BodyState extends State<Body> {
       "text": "Sistem Pendukung Keputusan Kontrasepsi",
       "image": "assets/images/splash1.png"
     },
-    {"text": "Loreeeeeeeee", "image": "assets/images/splash2.png"},
-    {"text": "Tesssss", "image": "assets/images/splashbot.png"},
     {
-      "text": "Sistem Pendukung Keputusan Kontrasepsi",
+      "text": "Berisi Artikel Alat Kontrasepsi",
+      "image": "assets/images/splash2.png"
+    },
+    {"text": "Pengguna Aktif KB", "image": "assets/images/splashbot.png"},
+    {
+      "text": "Menggunakan metode TOPSIS dalam pengambilan keputusan",
       "image": "assets/images/homesplash.png"
     },
   ];

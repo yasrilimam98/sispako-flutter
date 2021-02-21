@@ -1,7 +1,6 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:sispako/Style/constant.dart';
 import 'dart:math';
 
 import 'package:sispako/screens/homes/home_screen.dart';
@@ -38,7 +37,6 @@ class _MyAppState extends State<MyApp1> {
 
   // Alert Dialog
   TextEditingController controllerNama = new TextEditingController();
-  TextEditingController controllerKeluhan = new TextEditingController();
 
   //Usia
   List<String> _listUsia = [
@@ -60,7 +58,7 @@ class _MyAppState extends State<MyApp1> {
 
   //Gangguan Kesehatan
   List<String> _listGangguanKesehatan = [
-    'Tidak ada penyakit',
+    'Tidak ada',
     'Pusing',
     'Migran',
     'Lever',
@@ -85,17 +83,24 @@ class _MyAppState extends State<MyApp1> {
     1,
     1
   ]; //Tinggal ubah angka di dalam listBobotGangguanKesehatan sesuai nilai bobot dari listGangguanKesehatan (Urut)
-  String _selectedGangguanKesehatan = "Tidak ada penyakit";
+  String _selectedGangguanKesehatan = "Tidak ada";
   int valueGangguanKesehatan = 5;
 
   // //Jumlah Anak
   List<String> _listJumlahAnak = ['Anak 1', 'Anak 2', 'Anak 3', 'Anak 4'];
-  List<int> listBobotJumlahAnak = [4, 3, 2, 1];
+  List<int> listBobotJumlahAnak = [1, 2, 3, 4];
   String _selectedJumlahAnak = "Anak 1";
   int valueJumlahAnak = 4;
 
   String namaLengkap = "";
-  String keluhan = "";
+  String _mens = "";
+
+  void _pilihmens(String value) {
+    setState(() {
+      _mens = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -127,19 +132,25 @@ class _MyAppState extends State<MyApp1> {
                     new Padding(
                       padding: new EdgeInsets.only(top: 20.0),
                     ),
-                    new TextField(
-                        controller: controllerKeluhan,
-                        maxLines: 3,
-                        decoration: new InputDecoration(
-                            hintText: "Keluhan",
-                            labelText: "Keluhan",
-                            border: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(20.0))),
-                        onChanged: (text) {
-                          setState(() {
-                            keluhan = text;
-                          });
-                        }),
+                    new RadioListTile(
+                      value: "Mens",
+                      title: new Text("Mens"),
+                      onChanged: (String value) {
+                        _pilihmens(value);
+                      },
+                      groupValue: _mens,
+                      subtitle: new Text("Pilih ini jika anda Menstruasi"),
+                    ),
+                    new RadioListTile(
+                      value: "Tidak Mens",
+                      title: new Text("Tidak Mens"),
+                      onChanged: (String value) {
+                        _pilihmens(value);
+                      },
+                      groupValue: _mens,
+                      subtitle:
+                          new Text("Pilih ini jika anda Tidak Menstruasi"),
+                    ),
                     new Padding(
                       padding: new EdgeInsets.only(top: 20.0),
                     ),
@@ -189,7 +200,7 @@ class _MyAppState extends State<MyApp1> {
                             value: _selectedBeratBadan,
                             isExpanded: true,
                             underline: SizedBox(),
-                            style: TextStyle(color: Colors.black, fontSize: 20),
+                            style: TextStyle(color: Colors.black, fontSize: 16),
                             items: _listBeratBadan.map((location) {
                               return DropdownMenuItem(
                                 child: new Text(location),
@@ -220,7 +231,7 @@ class _MyAppState extends State<MyApp1> {
                             value: _selectedGangguanKesehatan,
                             isExpanded: true,
                             underline: SizedBox(),
-                            style: TextStyle(color: Colors.black, fontSize: 20),
+                            style: TextStyle(color: Colors.black, fontSize: 16),
                             items: _listGangguanKesehatan.map((location) {
                               return DropdownMenuItem(
                                 child: new Text(location),
@@ -253,7 +264,7 @@ class _MyAppState extends State<MyApp1> {
                             underline: SizedBox(),
                             value: _selectedJumlahAnak,
                             isExpanded: true,
-                            style: TextStyle(color: Colors.black, fontSize: 20),
+                            style: TextStyle(color: Colors.black, fontSize: 16),
                             items: _listJumlahAnak.map((location) {
                               return DropdownMenuItem(
                                 child: new Text(location),
@@ -353,22 +364,41 @@ class _MyAppState extends State<MyApp1> {
   void hitungTopsis(
       num usia, num beratBadan, num gangguanKesehatan, num jumlahAnak) {
     AlertDialog alertDialog = new AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
       content: new Container(
-          height: 600.0,
+          height: 515.0,
           width: 400.0,
+
           // decoration: BoxDecoration(
           //   border: Border.all(color: Colors.blue, width: 1),
           //   borderRadius: BorderRadius.circular(20),
           // ),
           child: new Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              new Text("Nama Lengkap : \n${controllerNama.text}"),
-              new Text("Keluhan : \n${controllerKeluhan.text}"),
-              new Text("Usia : \n$_selectedUsia"),
-              new Text("Berat Badan : \n$_selectedBeratBadan"),
-              new Text("Gangguan Kesehatan : \n$_selectedGangguanKesehatan"),
-              new Text("Jumlah Anak : \n$_selectedJumlahAnak"),
-              new Text("Info Detail : \n$detailRangking"),
+              new Text(
+                "\nInfo Detail",
+                style: TextStyle(
+                    fontFamily: "muli",
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w700),
+              ),
+              new Padding(
+                padding: new EdgeInsets.only(top: 10.0),
+              ),
+              new Text(
+                  "Nama Lengkap : ${controllerNama.text}                   "),
+              new Text("Menstruasi / Tidak : $_mens     "),
+              new Text("Usia : $_selectedUsia                          "),
+              new Text("Berat Badan : $_selectedBeratBadan              "),
+              new Text(
+                  "Penyakit : $_selectedGangguanKesehatan                        "),
+              new Text(
+                  "Jumlah Anak : $_selectedJumlahAnak                     \n"),
+              new Text(
+                  "Rekomendasi alat : \n$detailRangking                            "),
               new Padding(
                 padding: new EdgeInsets.all(10.0),
               ),
@@ -394,12 +424,12 @@ class _MyAppState extends State<MyApp1> {
       List inputan = [usia, beratBadan, gangguanKesehatan, jumlahAnak];
       //Tabel Ektraksi Kriteria dan Alternatif
       List tabelAlternatif = [
-        [5, 4, 1, 4],
-        [2, 4, 4, 1],
-        [3, 4, 4, 2],
-        [5, 4, 4, 3],
-        [4, 4, 4, 3],
-        [4, 4, 4, 2]
+        [2, 4, 2, 2],
+        [2, 4, 5, 1],
+        [1, 4, 3, 2],
+        [2, 4, 2, 2],
+        [2, 4, 4, 2],
+        [2, 4, 4, 2]
       ];
       List bobot = [30, 20, 30, 20];
       var jmlBaris = tabelAlternatif.length;
