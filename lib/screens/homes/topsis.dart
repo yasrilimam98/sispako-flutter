@@ -419,17 +419,17 @@ class _MyAppState extends State<MyApp1> {
             ],
           )),
     );
-    showDialog(context: context, child: alertDialog);
+    showDialog(builder: (context) => alertDialog, context: context);
     setState(() {
       List inputan = [usia, beratBadan, gangguanKesehatan, jumlahAnak];
       //Tabel Ektraksi Kriteria dan Alternatif
       List tabelAlternatif = [
-        [2, 4, 2, 2],
-        [2, 4, 5, 1],
-        [1, 4, 3, 2],
-        [2, 4, 2, 2],
-        [2, 4, 4, 2],
-        [2, 4, 4, 2]
+        [5, 4, 1, 4],
+        [2, 4, 4, 1],
+        [3, 4, 4, 2],
+        [5, 4, 4, 3],
+        [4, 4, 4, 3],
+        [4, 4, 4, 2]
       ];
       List bobot = [30, 20, 30, 20];
       var jmlBaris = tabelAlternatif.length;
