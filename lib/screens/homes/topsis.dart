@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -40,25 +38,29 @@ class _MyAppState extends State<MyApp1> {
 
   //Usia
   List<String> _listUsia = [
-    '22 - 27 tahun',
-    '28 - 33 tahun',
-    '34 - 39 tahun',
-    '40 - 45 tahun',
-    '46 - 50 tahun'
+    'X (Tidak ada)',
+    '< 21 Tahun',
+    '22 - 27 Tahun',
+    '28 - 33 Tahun',
+    '34 - 39 Tahun',
+    '40 - 45 Tahun',
+    '46 - 50 Tahun',
+    '60 - 75 Tahun'
   ];
-  List<int> listBobotUsia = [5, 4, 3, 2, 1];
-  String _selectedUsia = "22 - 27 tahun";
-  int valueUsia = 5;
+  List<int> listBobotUsia = [0, 4, 5, 4, 3, 2, 1];
+  String _selectedUsia = "X (Tidak ada)";
+  int valueUsia = 0;
 
   //Berat Badan
-  List<String> _listBeratBadan = ['45 sd 65 Kg', '70 Kg'];
-  List<int> listBobotBeratBadan = [4, 1];
-  String _selectedBeratBadan = "45 sd 65 Kg";
-  int valueBeratBadan = 4;
+  List<String> _listBeratBadan = ['X (Tidak ada)', '45 sd 65 Kg', '70 Kg'];
+  List<int> listBobotBeratBadan = [0, 4, 1];
+  String _selectedBeratBadan = "X (Tidak ada)";
+  int valueBeratBadan = 0;
 
   //Gangguan Kesehatan
   List<String> _listGangguanKesehatan = [
-    'Tidak ada',
+    'X (Tidak ada)',
+    'Tidak ada penyakit',
     'Pusing',
     'Migran',
     'Lever',
@@ -71,6 +73,7 @@ class _MyAppState extends State<MyApp1> {
     'Tumor',
   ];
   List<int> listBobotGangguanKesehatan = [
+    0,
     5,
     5,
     4,
@@ -83,14 +86,20 @@ class _MyAppState extends State<MyApp1> {
     1,
     1
   ]; //Tinggal ubah angka di dalam listBobotGangguanKesehatan sesuai nilai bobot dari listGangguanKesehatan (Urut)
-  String _selectedGangguanKesehatan = "Tidak ada";
-  int valueGangguanKesehatan = 5;
+  String _selectedGangguanKesehatan = "X (Tidak ada)";
+  int valueGangguanKesehatan = 0;
 
   // //Jumlah Anak
-  List<String> _listJumlahAnak = ['Anak 1', 'Anak 2', 'Anak 3', 'Anak 4'];
-  List<int> listBobotJumlahAnak = [1, 2, 3, 4];
-  String _selectedJumlahAnak = "Anak 1";
-  int valueJumlahAnak = 4;
+  List<String> _listJumlahAnak = [
+    'X (Tidak ada)',
+    'Anak 1',
+    'Anak 2',
+    'Anak 3',
+    'Anak 4'
+  ];
+  List<int> listBobotJumlahAnak = [0, 1, 2, 3, 4];
+  String _selectedJumlahAnak = "X (Tidak ada)";
+  int valueJumlahAnak = 0;
 
   String namaLengkap = "";
   String _mens = "";
@@ -154,6 +163,7 @@ class _MyAppState extends State<MyApp1> {
                     new Padding(
                       padding: new EdgeInsets.only(top: 20.0),
                     ),
+                    Text("Usia", style: TextStyle(fontSize: 17)),
                     Padding(
                       padding: const EdgeInsets.all(9.0),
                       child: Container(
@@ -185,6 +195,7 @@ class _MyAppState extends State<MyApp1> {
                             }),
                       ),
                     ),
+                    Text("Berat Badan", style: TextStyle(fontSize: 17)),
                     Padding(
                       padding: const EdgeInsets.all(9.0),
                       child: Container(
@@ -216,6 +227,7 @@ class _MyAppState extends State<MyApp1> {
                             }),
                       ),
                     ),
+                    Text("Gangguan Kesehatan", style: TextStyle(fontSize: 17)),
                     Padding(
                       padding: const EdgeInsets.all(9.0),
                       child: Container(
@@ -249,6 +261,7 @@ class _MyAppState extends State<MyApp1> {
                             }),
                       ),
                     ),
+                    Text("Jumlah Anak", style: TextStyle(fontSize: 17)),
                     Padding(
                       padding: const EdgeInsets.all(9.0),
                       child: Container(
@@ -283,6 +296,7 @@ class _MyAppState extends State<MyApp1> {
                     new Padding(
                       padding: new EdgeInsets.only(top: 10.0),
                     ),
+                    // ignore: deprecated_member_use
                     RaisedButton(
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -312,6 +326,7 @@ class _MyAppState extends State<MyApp1> {
                     new Padding(
                       padding: new EdgeInsets.only(top: 15.0),
                     ),
+                    // ignore: deprecated_member_use
                     RaisedButton(
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -402,6 +417,7 @@ class _MyAppState extends State<MyApp1> {
               new Padding(
                 padding: new EdgeInsets.all(10.0),
               ),
+              // ignore: deprecated_member_use
               new RaisedButton(
                 child: new Text(
                   "OK",
@@ -424,29 +440,39 @@ class _MyAppState extends State<MyApp1> {
       List inputan = [usia, beratBadan, gangguanKesehatan, jumlahAnak];
       //Tabel Ektraksi Kriteria dan Alternatif
       List tabelAlternatif = [
-        [5, 4, 1, 4],
-        [2, 4, 4, 1],
         [3, 4, 4, 2],
-        [5, 4, 4, 3],
-        [4, 4, 4, 3],
-        [4, 4, 4, 2]
+        [3, 1, 2, 3],
+        [3, 1, 3, 2],
+        [5, 1, 4, 4],
+        [4, 4, 3, 1],
+        [3, 1, 3, 3]
       ];
       List bobot = [30, 20, 30, 20];
       var jmlBaris = tabelAlternatif.length;
       var jmlKolom = tabelAlternatif[0].length;
+      // ignore: deprecated_member_use
       List<double> tabelAkarMatriks = new List(jmlKolom);
+      // ignore: deprecated_member_use
       List<double> tabelSolusiPositif = new List(jmlKolom);
+      // ignore: deprecated_member_use
       List<double> tabelSolusiNegatif = new List(jmlKolom);
+      // ignore: deprecated_member_use
       List<double> tabelAkarSolusiPositif = new List(jmlBaris);
+      // ignore: deprecated_member_use
       List<double> tabelAkarSolusiNegatif = new List(jmlBaris);
+      // ignore: deprecated_member_use
       List<double> tabelNilaiAkhir = new List(jmlBaris);
       var tabelTernormalisasi =
+          // ignore: deprecated_member_use
           List.generate(jmlBaris, (i) => List(jmlKolom), growable: false);
       var tabelKeputusanTerbobot =
+          // ignore: deprecated_member_use
           List.generate(jmlBaris, (i) => List(jmlKolom), growable: false);
       var tabelJarakPositif =
+          // ignore: deprecated_member_use
           List.generate(jmlBaris, (i) => List(jmlKolom), growable: false);
       var tabelJarakNegatif =
+          // ignore: deprecated_member_use
           List.generate(jmlBaris, (i) => List(jmlKolom), growable: false);
       //Hitung x1 s/d x4
       for (var i = 0; i < jmlKolom; i++) {
@@ -473,6 +499,7 @@ class _MyAppState extends State<MyApp1> {
       }
       //Hitung Solusi Ideal Positif & Negatif
       for (var i = 0; i < jmlKolom; i++) {
+        // ignore: deprecated_member_use
         List<double> dataPositif = new List(jmlBaris);
         for (var j = 0; j < jmlBaris; j++) {
           dataPositif[j] = tabelKeputusanTerbobot[j][i];

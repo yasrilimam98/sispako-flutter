@@ -4,8 +4,6 @@ import 'package:sispako/screens/homes/artikeldetail.dart';
 import 'package:sispako/screens/homes/topsis.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
 
-import '../../main.dart';
-
 class HomePage extends StatelessWidget {
   static String routeName = "/homepage";
   @override
@@ -335,6 +333,7 @@ class _IngredientProgress extends StatelessWidget {
             SizedBox(
               width: 10,
             ),
+            // ignore: unnecessary_brace_in_string_interps
             Text("${leftAmount} %"),
           ],
         ),
